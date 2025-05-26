@@ -33,7 +33,7 @@ class Article:
 
     @author.setter
     def author(self, value):
-        from lib.models.author import Author
+        from .author import Author
         if not isinstance(value, Author):
             raise ValueError("Author must be an Author instance")
         self._author = value
@@ -44,7 +44,7 @@ class Article:
 
     @magazine.setter
     def magazine(self, value):
-        from lib.models.magazine import Magazine
+        from .magazine import Magazine
         if not isinstance(value, Magazine):
             raise ValueError("Magazine must be a Magazine instance")
         self._magazine = value
@@ -62,8 +62,8 @@ class Article:
 
     @classmethod
     def find_by_id(cls, id):
-        from lib.models.author import Author
-        from lib.models.magazine import Magazine
+        from .author import Author
+        from .magazine import Magazine
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM articles WHERE id = ?", (id,))
